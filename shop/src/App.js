@@ -3,11 +3,13 @@ import logo from './logo.svg';
 import './App.css';
 import { Navbar,Nav,NavDropdown,Button,Jumbotron } from 'react-bootstrap';
 import shoesdata from './data';
-import { useState } from 'react';
-
-
+import React, { useState } from 'react';
+import {Link,Route,Switch} from 'react-router-dom'
+import Main from './main'
+import Detail from './detail'
+//기획
+//중요한 데이터는 항상  app.js를 통해 저장(최상위데이터에서 관리할떄 중요 상위->하위)
 function App() {
-  let [신발데이터,신발데이터변경] = useState(shoesdata);
   return (
     <div className="App">
 <Navbar bg="light" expand="lg">
@@ -15,8 +17,8 @@ function App() {
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="ml-auto">
-      <Nav.Link href="#home">Home</Nav.Link>
-      <Nav.Link href="#link">Link</Nav.Link>
+      <Nav.Link><Link to="/">Home</Link></Nav.Link>
+      <Nav.Link><Link to="/detail">Link</Link></Nav.Link>
       <NavDropdown title="Dropdown" id="basic-nav-dropdown">
         <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
         <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -25,43 +27,29 @@ function App() {
         <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
       </NavDropdown>
     </Nav>
-
   </Navbar.Collapse>
 </Navbar>
-<Jumbotron className="background">
-  <h1>shose 20% sale</h1>
-  <p>
-    This is a simple hero unit, a simple jumbotron-style component for calling
-    extra attention to featured content or information.
-  </p>
-  <p>
-    <Button variant="primary">Learn more</Button>
-  </p>
-</Jumbotron>
-<div className="container">
-  <div className="row">
+<Switch>
+<Route exact path="/"> 
+{/* 매칭되는걸 다보여주기 때문에 exact는 경로가 정확히 일치할떄만 보여줌 */}
+{/* <Route path="/어쩌구" component={Modal}> */}
+{/* 하나를 깔끔하게 보여주고 싶을때 compont */}
+{/* path는 각 페이지의 주소의 내용 */}
+<Main />
+</Route>
 
+<Route path="/detail/:id">
+<Detail 신발데이터={shoesdata}/>
+</Route>
 
-    {
-      신발데이터.map((a,i)=>{
-        return (
-        <Card 신발데이터들={신발데이터[i]} i={i} key={i}/>
-        )
-      })
-    }
-  </div>
-      </div>
-    </div>
+<Route path="/:id">
+{/* 모든문자라는 경로를 의미(파라미터) 콜론뒤에 맘대로작명*/}
+<div>아무거나적었을때</div>
+</Route>
+</Switch>
+{/* Switch 여러개가 맞아도 하나만 보여준다 */}
+</div>
   );
 }
-function Card (props) {
-  return(
-    <div className="col-md-4">
-    <img src={"https://codingapple1.github.io/shop/shoes" + (props.i +1) + ".jpg"} width="100%"/>
-    <h4>{props.신발데이터들.title}</h4>
-    <h4>{props.신발데이터들.content} & {props.신발데이터들.price}</h4>
-  </div>
-  )
-  
-}
+
 export default App;
