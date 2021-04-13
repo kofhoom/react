@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 import {Link,Route,Switch} from 'react-router-dom'
 import Main from './main'
 import Detail from './detail'
+
 //기획
 //중요한 데이터는 항상  app.js를 통해 저장(최상위데이터에서 관리할떄 중요 상위->하위)
 function App() {
@@ -17,8 +18,8 @@ function App() {
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="ml-auto">
-      <Nav.Link><Link to="/">Home</Link></Nav.Link>
-      <Nav.Link><Link to="/detail">Link</Link></Nav.Link>
+      <Nav.Link as={Link} to="/">Home</Nav.Link>
+      <Nav.Link as={Link} to="/detail">Link</Nav.Link>
       <NavDropdown title="Dropdown" id="basic-nav-dropdown">
         <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
         <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>

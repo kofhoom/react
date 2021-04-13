@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {useHistory, useParams} from 'react-router-dom' //뒤로가기
-import styled from 'styled-components';
-
+import styled from 'styled-components'
+import './Detail.scss'
 let 박스 = styled.div `
 padding : 20px;
 color : red;
@@ -27,8 +27,11 @@ let history = useHistory();
     return(
         <div className="container">
             <박스>
-            <제목 color="blue">상세페이지</제목>
+            <제목 className="red">상세페이지</제목>
             </박스>
+            <div className="my-alert2">
+              <p>제고가 얼마 남지 않았습니다.</p>
+            </div>
       <div className="row">
         <div className="col-md-6">
           <img src={"https://codingapple1.github.io/shop/shoes"+ id +".jpg"} width="100%" />

@@ -1,0 +1,36 @@
+/*eslint-disable*/
+
+$안녕하세요 : darkgreen;
+
+.red {
+    color: $안녕하세요;
+}
+
+.my-alert2 {
+    @extend .my-alert;
+    //클레스 붙여넣기
+    background: #ffe591;
+}
+
+@mixin 함수() {
+    background: #eeeeee;
+    padding: 15px;
+    background-repeat: 5px;
+    max-width: 500px;
+    width: 100%;
+    margin: auto;
+    //@mixin 함수선연
+}
+
+.my-alert {
+    @include 함수(); 
+    //함수쓸땐  include
+
+    p {
+        margin-bottom: 0;
+        font-size: 50px;
+    }
+}
+
+
+@import './reset.scss'
