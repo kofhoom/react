@@ -1,6 +1,7 @@
 import { Button,Jumbotron } from 'react-bootstrap';
 import shoesdata from './data';
 import React, { useState } from 'react';
+import axios from 'axios';
 
 function Main(){
     let [신발데이터,신발데이터변경] = useState(shoesdata);
@@ -25,9 +26,20 @@ function Main(){
         )
       })
     }
+    
   </div>
+ 
+
       </div>
+      <button className="btn btn-danger" onClick={()=>{
+        axios.get('https://codingapple1.github.io/shop/data2.json').then((result)=>{
+          console.log(result.data);
+        }).catch(()=>{
+          console.log('실패');
+        })
+      }}>더보기</button>
       </div>
+      
     )
 }
 

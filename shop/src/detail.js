@@ -29,15 +29,19 @@ componentWillUnmount(){
 
 
 function Detail(props){
- 
+  let [입력값,입력값변경] = useState('');
+  let [alert,alert변경] = useState(true);
+
+
+
   //life cycle hook 최신
   useEffect(()=>{
-//컴포넌트가 보일때, 컴포넌트가 업데이트 될때(바뀔때)
+//컴포넌트가 보일때, 컴포넌트가 업데이트 될때(바뀔때계속작동)
 console.log(1111111);
 //시작할때 2초후에 알람창꺼지게 
 let timer = setTimeout(()=>{ alert변경(false) /*document.querySelector('.my-alert2').style.display = 'none' 내가한거 */ },2000) 
 
-
+return ()=>{clearTimeout(timer)}
 //컴포넌트가 사라질때
 /* 
 return fadout =>{실행코드} //이름있을때
@@ -45,7 +49,9 @@ return () =>{실행코드} //없을때
 
 */
 //여러개 실행하고 싶다면 useEffect 여려개 생성, 생성순으로 실행됨
-  });
+  },[/*조건이 없으면 useEffect안에 기능은 페이지로드후 한번만 실행되고 그다음 조건이 없으면 실행되지 않는다, ex) alert ,등,등 이라는 state가 변경이 될때만 useEffect실행*/]);
+
+
     let {id} = useParams();  //{} (사용자가 입력한 url 파라미터들)
     let 찾은상품 = props.신발데이터.find(x => x.id == id);
       //function(x){return x.id == id};
@@ -59,9 +65,7 @@ return () =>{실행코드} //없을때
     
 let history = useHistory();
     // history오브젝트 생성가능 (방문기록등을 저장해놓는 오브젝트)
-    let [입력값,입력값변경] = useState('');
-    let [alert,alert변경] = useState(true);
-    console.log(입력값)
+
     return(
         <div className="container">
             <박스>

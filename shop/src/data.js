@@ -19,33 +19,5 @@ export default
       title : "Grey Yordan",
       content : "Born in the States",
       price : 130000
-    },
-  
-    {
-      id : 2,
-      title : "Grey Yordan",
-      content : "Born in the States",
-      price : 130000
-    },
-  
-    {
-      id : 3,
-      title : "Grey Yordan",
-      content : "Born in the States",
-      price : 130000
-    },
-  
-    {
-      id : 4,
-      title : "Grey Yordan",
-      content : "Born in the States",
-      price : 130000
-    },
-  
-    {
-      id : 5,
-      title : "Grey Yordan",
-      content : "Born in the States",
-      price : 130000
     }
   ] 
