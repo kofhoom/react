@@ -1,4 +1,7 @@
-import React, {useState} from 'react'
+
+
+
+import React, {useEffect, useState} from 'react'
 import {useHistory, useParams} from 'react-router-dom' //뒤로가기
 import styled from 'styled-components'
 import './Detail.scss'
@@ -10,7 +13,39 @@ let 제목 =  styled.h4`
     font-size : 15px;
     color : ${function(props){return props.color}}
 `;
+
+/*
+life cycle old
+class Detail12 extends React.Component {
+componentDidMount(){
+  //Detail12가 보일때(렌더링이될떄)실행해주세요
+}
+componentWillUnmount(){
+  //Detail12가 사라질때(렌더링이될떄)실행해주세요
+}
+}
+*/
+
+
+
 function Detail(props){
+ 
+  //life cycle hook 최신
+  useEffect(()=>{
+//컴포넌트가 보일때, 컴포넌트가 업데이트 될때(바뀔때)
+console.log(1111111);
+//시작할때 2초후에 알람창꺼지게 
+let timer = setTimeout(()=>{ alert변경(false) /*document.querySelector('.my-alert2').style.display = 'none' 내가한거 */ },2000) 
+
+
+//컴포넌트가 사라질때
+/* 
+return fadout =>{실행코드} //이름있을때
+return () =>{실행코드} //없을때
+
+*/
+//여러개 실행하고 싶다면 useEffect 여려개 생성, 생성순으로 실행됨
+  });
     let {id} = useParams();  //{} (사용자가 입력한 url 파라미터들)
     let 찾은상품 = props.신발데이터.find(x => x.id == id);
       //function(x){return x.id == id};
@@ -24,14 +59,25 @@ function Detail(props){
     
 let history = useHistory();
     // history오브젝트 생성가능 (방문기록등을 저장해놓는 오브젝트)
+    let [입력값,입력값변경] = useState('');
+    let [alert,alert변경] = useState(true);
+    console.log(입력값)
     return(
         <div className="container">
             <박스>
             <제목 className="red">상세페이지</제목>
             </박스>
-            <div className="my-alert2">
+            <input onChange={(e)=>{입력값변경(e.target.value)}}/>
+            
+            
+            
+            {
+              alert === true
+              ? (<div className="my-alert2">
               <p>제고가 얼마 남지 않았습니다.</p>
-            </div>
+             </div>)
+             : null
+            }
       <div className="row">
         <div className="col-md-6">
           <img src={"https://codingapple1.github.io/shop/shoes"+ id +".jpg"} width="100%" />
@@ -48,5 +94,14 @@ let history = useHistory();
 </div> 
     )
 }
+/*내가한거
+function Alert2() {
+  return(
+    <div className="my-alert2">
+      <p>제고가 얼마 남지 않았습니다.</p>
+     </div>
+  )
+}
+*/
 
 export default Detail
